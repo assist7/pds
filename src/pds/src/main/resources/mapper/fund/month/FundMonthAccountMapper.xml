@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 月账 -->
-<mapper namespace="com.qylyx.mms.dao.fund.month.IFundMonthAccountDao">
-	<resultMap id="FundMonthlyAccountVO" type="com.qylyx.mms.entity.fund.month.vo.FundMonthlyAccountVO"/>
-	<parameterMap id="FundMonthlyAccountSearchCo" type="com.qylyx.mms.entity.fund.month.co.FundMonthlyAccountSearchCo"/>
-	<parameterMap id="FundMonthlyAccountVO" type="com.qylyx.mms.entity.fund.month.vo.FundMonthlyAccountVO"/>
+<mapper namespace="com.assist7.pds.dao.fund.month.IFundMonthAccountDao">
+	<resultMap id="FundMonthlyAccountVO" type="com.assist7.pds.entity.fund.month.vo.FundMonthlyAccountVO"/>
+	<parameterMap id="FundMonthlyAccountSearchCo" type="com.assist7.pds.entity.fund.month.co.FundMonthlyAccountSearchCo"/>
+	<parameterMap id="FundMonthlyAccountVO" type="com.assist7.pds.entity.fund.month.vo.FundMonthlyAccountVO"/>
 	
 	<!-- 所有字段 -->
 	<sql id="allCols">

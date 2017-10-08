@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 系统初始化 -->
-<mapper namespace="com.qylyx.mms.dao.sys.ISysInitDao">
+<mapper namespace="com.assist7.pds.dao.sys.ISysInitDao">
 
 	<!-- 查询是否初始化过数据库 -->
 	<select id="queryIsInitDatabase" resultType="int">

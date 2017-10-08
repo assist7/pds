@@ -59,11 +59,11 @@
 							<thead>
 								<tr>
 									<td>月份</td>
-									<td>本月结余</td>
-									<td>上月结余</td>
-									<td>收/支差</td>
 									<td>本月收入</td>
 									<td>本月支出</td>
+									<td>收/支差</td>
+									<td>本月结余</td>
+									<td>上月结余</td>
 									<td>非常规收入</td>
 									<td>非常规支出</td>
 									<td>记账时间</td>
@@ -73,16 +73,16 @@
 							<tbody>
 								<tr ng-repeat="data in dataList">
 									<td>{{data.year}} - {{data.month}}</td>
-									<td>{{data.surplus}}</td>
-									<td>{{data.nextSurplus}}</td>
-									<td>{{data.earning - data.expense}}</td>
 									<td>{{data.earning}}</td>
 									<td>{{data.expense}}</td>
+									<td>{{data.earning - data.expense}}</td>
+									<td>{{data.surplus}}</td>
+									<td>{{data.nextSurplus}}</td>
 									<td>{{data.unnormalEarning}}</td>
 									<td>{{data.unnormalExpense}}</td>
 									<td>{{data.createTime | date : 'yyyy-MM-dd HH:mm'}}</td>
 									<td>
-										<button class="btn btn-xs btn-info" title="修改">
+										<button ng-click="toUpdate($index)" class="btn btn-xs btn-info" title="修改">
 											<i class="ace-icon fa fa-pencil bigger-120"></i>
 										</button>
 										<button ng-click="del($index)" class="btn btn-xs btn-danger" title="删除">

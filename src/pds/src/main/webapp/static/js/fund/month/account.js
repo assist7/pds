@@ -31,7 +31,12 @@ mmsStates["fund/month/account/toView"] = {
 		 */
 		$scope.toAdd = function() {
 			//重置
-			$scope.editData = {};
+			$scope.editData = {
+				earning : 0,
+				expense : 0,
+				unnormalEarning : 0,
+				unnormalExpense : 0
+			};
 			
 			//====== 赋初始值 =======
 			$http({
@@ -79,6 +84,20 @@ mmsStates["fund/month/account/toView"] = {
 		 * 新增
 		 */
 		$scope.add = function() {
+			var data = $scope.editData;
+			if (july.isEmpty(data.nextSurplus)) {
+				fmsg("上月结余不能为空！");
+				return;
+			}
+			if (july.isEmpty(data.earning)) {
+				fmsg("本月收入不能为空！");
+				return;
+			}
+			if (july.isEmpty(data.expense)) {
+				fmsg("本月支出不能为空！");
+				return;
+			}
+			
 			$http({
 				url : getCtx() + "/fund/month/account/add",
 				method : "post",
@@ -112,6 +131,15 @@ mmsStates["fund/month/account/toView"] = {
 					}
 				});
 			});
+		}
+		
+		/**
+		 * 打开修改界面
+		 */
+		$scope.toUpdate = function(index) {
+			$scope.editData = $scope.dataList[index];
+			
+			$('#editPanel').modal("show");
 		}
 	}
 }

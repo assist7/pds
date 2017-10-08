@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 月账 -->
+<mapper namespace="com.qylyx.mms.dao.fund.month.IFundMonthAccountDao">
+	<resultMap id="FundMonthlyAccountVO" type="com.qylyx.mms.entity.fund.month.vo.FundMonthlyAccountVO"/>
+	<parameterMap id="FundMonthlyAccountSearchCo" type="com.qylyx.mms.entity.fund.month.co.FundMonthlyAccountSearchCo"/>
+	<parameterMap id="FundMonthlyAccountVO" type="com.qylyx.mms.entity.fund.month.vo.FundMonthlyAccountVO"/>
+	
+	<!-- 所有字段 -->
+	<sql id="allCols">
+        t.id, t.year, t.month, t.next_surplus, t.earning, 
+        t.expense, t.surplus, t.unnormal_earning, t.unnormal_expense, t.create_time
+    </sql>
+    
+    
+    <!-- 查询列表 -->
+    <select id="queryList" resultMap="FundMonthlyAccountVO">
+        select <include refid="allCols"/>
+	        from fund_monthly_account t 
+	        order by t.year, t.month desc
+    </select>
+    
+    <!-- 新增 -->
+    <insert id="save" parameterMap="FundMonthlyAccountVO" useGeneratedKeys="true" keyProperty="id">
+    	insert into fund_monthly_account (
+            year, month, next_surplus, earning, 
+        	expense, surplus, unnormal_earning, unnormal_expense, create_time
+		) values (
+            #{year},
+            #{month},
+            #{nextSurplus},
+            #{earning},
+            #{expense},
+            #{surplus},
+            #{unnormalEarning},
+            #{unnormalExpense},
+            #{createTime}
+        )
+    </insert>
+    
+    <!-- 查询最后一条账单 -->
+    <select id="queryLast" resultMap="FundMonthlyAccountVO">
+    	select <include refid="allCols"/>
+        	from fund_monthly_account t 
+        	order by t.year, t.month desc 
+        	limit 1
+    </select>
+    
+    <!-- 查询某月的月账是否已记账过了 -->
+    <select id="queryExistByMonth" resultType="int">
+    	select count(1) from fund_monthly_account t
+    		where t.year = #{year} and t.month = #{month}
+    </select>
+    
+    <!-- 删除 -->
+    <delete id="delete">
+    	delete from fund_monthly_account where id = #{id}
+    </delete>
+</mapper>

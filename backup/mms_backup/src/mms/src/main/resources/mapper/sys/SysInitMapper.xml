@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 系统初始化 -->
+<mapper namespace="com.qylyx.mms.dao.sys.ISysInitDao">
+
+	<!-- 查询是否初始化过数据库 -->
+	<select id="queryIsInitDatabase" resultType="int">
+		select count(1) from information_schema.tables t where t.table_name = 'SYS_INIT_RECORD'
+	</select>
+	
+	<!-- 在初始化数据库后，打上一个已初始化过的标识 -->
+	<insert id="saveInitDatabaseOverFlag">
+		insert into sys_init_record (code ,val, remark) values ('SYS_iNIT_DATABASE', '0', '是否初始化过数据库，1：是；0或不存在：否')
+	</insert>
+	
+</mapper>
