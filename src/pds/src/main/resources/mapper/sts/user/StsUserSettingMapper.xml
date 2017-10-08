@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 用户系统设置 -->
+<mapper namespace="com.qylyx.mms.dao.sts.user.IStsUserSettingDao">
+	
+	<!-- 修改 -->
+	<update id="update">
+		update sts_user_setting set val = #{val} where code = #{code}
+	</update>
+</mapper>

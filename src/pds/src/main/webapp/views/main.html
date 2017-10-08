@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<title>MMS首页</title>
+
+	<meta name="description" content="This is page-header (.page-header &gt; h1)" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<link rel="stylesheet" href="/static/plugins/assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/static/plugins/assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/static/plugins/assets/css/ace.min.css" id="main-ace-style" />
+	<link rel="stylesheet" href="/static/plugins/assets/css/ace-skins.min.css" />
+	<link rel="stylesheet" href="/static/plugins/assets/css/ace-rtl.min.css" />
+	
+	<link rel="stylesheet" href="/static/css/custom.css">
+</head>
+
+<body ng-app="mmsApp" class="no-skin">
+	<div ng-controller="mainController">
+		<div id="navbar" class="navbar navbar-default">
+			<div class="navbar-container" id="navbar-container">
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+					<span class="sr-only">Toggle sidebar</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				
+				<div class="navbar-header pull-left">
+					<a href="/main" class="navbar-brand">
+						<small>
+							<img src="/static/plugins/assets/avatars/logo.png" alt="" />
+						</small>
+					</a>
+				</div>
+				
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="/static/plugins/assets/avatars/picture.jpg" alt="" />
+								<span class="user-info">
+									欢迎您<br />
+									路人甲
+								</span>
+								<i class="ace-icon fa fa-caret-down"></i>
+							</a>
+							
+							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-cog"></i>
+										系统设置
+									</a>
+								</li>
+								
+								<li class="divider"></li>
+
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-power-off"></i>
+										登出
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="main-container" id="main-container">
+			<div id="sidebar" class="sidebar responsive">
+				<ul class="nav nav-list">
+					<li class="active">
+						<a href="/main">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> 总控制台 </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-pencil-square-o"></i>
+							<span class="menu-text"> 资金信息   </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						
+						<b class="arrow"></b>
+						
+						<ul class="submenu">
+							<li class="">
+								<a ui-sref="fund/month/account/toView">
+									<i class="menu-icon fa fa-caret-right"></i>
+									月    账
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+					
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-desktop"></i>
+							<span class="menu-text"> 设   置 </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						
+						<b class="arrow"></b>
+						
+						<ul class="submenu">
+							<li class="">
+								<a ui-sref="sts/user/toView">
+									<i class="menu-icon fa fa-caret-right"></i>
+									系统设置
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="main-content">
+				<div ui-view>
+					
+				</div>
+			</div>
+			
+			<div class="footer">
+				<div class="footer-inner">
+					<div class="footer-content">
+						<span class="bigger-120">
+							 
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	<script src="/static/plugins/assets/js/jquery.min.js"></script>
+	<script src="/static/plugins/assets/js/jquery.mobile.custom.min.js"></script>
+	<script src="/static/plugins/assets/js/bootstrap.min.js"></script>
+	<script src="/static/plugins/assets/js/jquery-ui.custom.min.js"></script>
+	<script src="/static/plugins/assets/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="/static/plugins/assets/js/ace-elements.min.js"></script>
+	<script src="/static/plugins/assets/js/ace.min.js"></script>
+
+	<script type="text/javascript" src="/static/plugins/angular/angular.js"></script>
+	<script type="text/javascript" src="/static/plugins/angular/angular-ui-router.js"></script>
+	
+	<script type="text/javascript" src="/static/js/common/common.js"></script>
+	<script type="text/javascript" src="/static/js/plugins/july-utils.js"></script>
+	<!-- mms的app，内定义驱动整个mms的全局变量 -->
+	<script type="text/javascript" src="/static/js/mms-app.js"></script>
+	
+	<!-- 各功能点的js -->
+	<script type="text/javascript" src="/static/js/sys/index.js"></script>
+	<script type="text/javascript" src="/static/js/sts/user/view.js"></script>
+	<script type="text/javascript" src="/static/js/fund/month/account.js"></script>
+	
+	<!-- 各功能点的js End -->
+	
+	<script type="text/javascript" src="/static/js/main.js"></script>
+</body>
+</html>

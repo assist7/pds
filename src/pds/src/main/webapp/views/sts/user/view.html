@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>系统设置</title>
+</head>
+<body>
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a ui-sref="index">MMS首页</a>
+			</li>
+			<li>
+				<a ui-sref="setting/sys/toView">系统设置</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="page-content">
+		<div class="page-content-area">
+			<div class="row">
+				<div class="col-xs-12">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 登录跳过：</label>
+							<div class="col-xs-10 col-sm-3">
+								<label>
+									<input ng-model="setting.LOGIN_SKIP" ng-false-value="0" ng-true-value="1"  class="ace ace-switch ace-switch-3 mms-ace-switch" type="checkbox"/>
+									<span style="margin-top: 4px;" class="lbl" data-lbl=""></span>
+								</label>
+							</div>
+						</div>
+						
+						<div class="clearfix form-actions">
+							<div class="col-md-offset-3 col-md-9">
+								<button ng-click="save()" class="btn btn-info" type="button">
+									<i class="ace-icon fa fa-check bigger-110"></i>
+									保存
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>			
+		</div>
+	</div>
+</body>
+</html>

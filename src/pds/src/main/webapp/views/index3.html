@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<div ng-app="mmsApp">
+	<div ng-controller="indexController">
+		<div>
+			Hello!
+			<ul>
+	            <li><a href="#!/aa">click aa</a></li>
+	            <li><a href="#bb">click bb</a></li>
+	            
+	            <li><a ui-sref="aa">ui-aa</a></li>
+	        </ul>
+		</div>
+		<div ng-view></div>
+		<div ui-view></div>
+	</div>
+</div>
+
+<script type="text/javascript" src="/static/plugins/angular/angular.js"></script>
+<!-- <script type="text/javascript" src="/static/plugins/angular/angular-route.js"></script> -->
+<script type="text/javascript" src="/static/plugins/angular/angular-ui-router.js"></script>
+<script type="text/javascript">
+	/* var mmsApp = angular.module("mmsApp", ["ngRoute"]); */
+</script>
+
+<script type="text/javascript" src="/static/js/aa.js"></script>
+<script type="text/javascript" src="/static/js/bb.js"></script>
+
+<script type="text/javascript">
+
+	var mmsApp = angular.module("mmsApp", ["ui.router"]);
+	
+	mmsApp.controller("indexController", function($scope) {
+		$scope.hello = "inininin";
+	});
+	
+	mmsApp.config(function($stateProvider) {
+		$stateProvider  
+	    	.state('aa', {  
+	        	url: '/aa',  
+	            templateUrl: '/aa',
+	            controller : function($scope) {
+	            	//$scope.hello = "ddppsdsd";
+	            }
+	    	});
+	});
+	
+	/* mmsApp.controller("aaController", function($scope) {
+		$scope.hello = "hello==aa";
+	});
+	
+	
+	mmsApp.controller("bbController", function($scope) {
+		$scope.hello = "hello==bb";
+	});
+	
+	mmsApp.controller("indexController", function($scope) {
+	});
+	
+	function kk() {
+		console.log("kk");
+	}
+	
+	mmsApp.config(function($routeProvider) {
+		$routeProvider.when('/aa', {
+	    	templateUrl: 'aa.html',
+	        controller: 'aaController'
+       })
+	}); */
+</script>
+</body>
+</html>
