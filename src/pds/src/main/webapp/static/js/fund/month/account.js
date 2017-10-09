@@ -9,7 +9,18 @@ mmsStates["fund/month/account/toView"] = {
 		$scope.dataList = {};
 		//编辑的数据
 		$scope.editData = {};
+		//编辑类型，0：新增，1：修改
+		$scope.editType = "0";
+		//查询条件
+		$scope.searchCo = {};
 		
+		/**
+		 * 初始化
+		 */
+		$scope.init = function() {
+			$scope.searchCo.year = july.defaultStr(july.getCurYear());
+		}
+		$scope.init();
 		
 		/**
 		 * 查询
@@ -18,7 +29,7 @@ mmsStates["fund/month/account/toView"] = {
 			$http({
 				url : getCtx() + "/fund/month/account/queryList",
 				method : "post",
-				params : {}
+				params : $scope.searchCo
 			}).then(function(result) {
 				$scope.dataList = result.data.data;
 			});
@@ -30,6 +41,7 @@ mmsStates["fund/month/account/toView"] = {
 		 * 打开新增界面
 		 */
 		$scope.toAdd = function() {
+			$scope.editType = "0";
 			//重置
 			$scope.editData = {
 				earning : 0,
@@ -81,36 +93,48 @@ mmsStates["fund/month/account/toView"] = {
 		}
 		
 		/**
-		 * 新增
+		 * 编辑
 		 */
-		$scope.add = function() {
-			var data = $scope.editData;
-			if (july.isEmpty(data.nextSurplus)) {
-				fmsg("上月结余不能为空！");
+		$scope.edit = function(type) {
+			if (!$scope.editValidate())
 				return;
-			}
-			if (july.isEmpty(data.earning)) {
-				fmsg("本月收入不能为空！");
-				return;
-			}
-			if (july.isEmpty(data.expense)) {
-				fmsg("本月支出不能为空！");
-				return;
-			}
+			
+			var urlSuffix = type == "0" ? "add" : "update";
+			var msgPrefix = type == "0" ? "新增" : "修改";
 			
 			$http({
-				url : getCtx() + "/fund/month/account/add",
+				url : getCtx() + "/fund/month/account/" + urlSuffix,
 				method : "post",
 				params : $scope.editData
 			}).then(function(result) {
 				if (httpSuccess(result)) {
-					rmsg("新增成功！");
+					rmsg(msgPrefix + "成功！");
 					$scope.search();
 					$('#editPanel').modal('hide');
 				} else {
-					fmsg("新增失败！");
+					fmsg(msgPrefix + "失败！");
 				}
 			});
+		}
+		
+		/**
+		 * 编辑验证
+		 */
+		$scope.editValidate = function() {
+			var data = $scope.editData;
+			if (july.isEmpty(data.nextSurplus)) {
+				fmsg("上月结余不能为空！");
+				return false;
+			}
+			if (july.isEmpty(data.earning)) {
+				fmsg("本月收入不能为空！");
+				return false;
+			}
+			if (july.isEmpty(data.expense)) {
+				fmsg("本月支出不能为空！");
+				return false;
+			}
+			return true;
 		}
 		
 		/**
@@ -137,10 +161,14 @@ mmsStates["fund/month/account/toView"] = {
 		 * 打开修改界面
 		 */
 		$scope.toUpdate = function(index) {
+			$scope.editType = "1";
 			$scope.editData = $scope.dataList[index];
+			$scope.editData.year = july.defaultStr($scope.editData.year);
+			$scope.editData.month = july.defaultStr($scope.editData.month);
 			
 			$('#editPanel').modal("show");
 		}
+		
 	}
 }
 

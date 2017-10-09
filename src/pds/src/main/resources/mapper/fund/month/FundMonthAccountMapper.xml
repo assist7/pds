@@ -15,10 +15,18 @@
     
     
     <!-- 查询列表 -->
-    <select id="queryList" resultMap="FundMonthlyAccountVO">
+    <select id="queryList" resultMap="FundMonthlyAccountVO" parameterMap="FundMonthlyAccountSearchCo">
         select <include refid="allCols"/>
-	        from fund_monthly_account t 
-	        order by t.year, t.month desc
+        from fund_monthly_account t 
+        <where>
+	        <if test="year != null">
+	        	and t.year = #{year}
+	        </if>
+	        <if test="month != null">
+	        	and t.month = #{month}
+	        </if>
+        </where>
+        order by t.year, t.month desc
     </select>
     
     <!-- 新增 -->
@@ -57,4 +65,18 @@
     <delete id="delete">
     	delete from fund_monthly_account where id = #{id}
     </delete>
+    
+    <!-- 修改 -->
+    <update id="update" parameterMap="FundMonthlyAccountVO">
+    	update fund_monthly_account set
+            year = #{year},
+            month = #{month},
+            next_surplus = #{nextSurplus},
+            earning = #{earning},
+            expense = #{expense},
+            surplus = #{surplus},
+            unnormal_earning = #{unnormalEarning},
+            unnormal_expense = #{unnormalExpense}
+        where id = #{id}
+    </update>
 </mapper>

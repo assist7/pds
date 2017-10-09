@@ -8,7 +8,11 @@ var july = {
 	 * 是否为空
 	 */
 	isEmpty : function(val) {
-		return val == undefined || val == null || val == "";
+		if (val == undefined || val == null)
+			return true;
+		if (typeof val == "string" && val == "")
+			return true;
+		return false;
 	},
 	
 	/**

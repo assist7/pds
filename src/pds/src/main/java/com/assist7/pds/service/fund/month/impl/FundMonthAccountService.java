@@ -56,6 +56,7 @@ public class FundMonthAccountService extends BaseService<FundMonthlyAccountVO> i
 	 * 查询最后一条账单
 	 * @return
 	 */
+	@Salog("查询最后一条账单")
 	@Override
 	public Result<FundMonthlyAccountVO> queryLast() {
 		FundMonthlyAccountVO vo = fundMonthAccountDao.queryLast();
@@ -65,6 +66,7 @@ public class FundMonthAccountService extends BaseService<FundMonthlyAccountVO> i
 	/**
 	 * 查询某月的月账是否已记账过了
 	 */
+	@Salog("查询某月的月账是否已记账过了")
 	@Override
 	public Result<Integer> queryExistByMonth(Integer year, Integer month) {
 		int count = fundMonthAccountDao.queryExistByMonth(year, month);
@@ -74,9 +76,22 @@ public class FundMonthAccountService extends BaseService<FundMonthlyAccountVO> i
 	/**
 	 * 删除
 	 */
+	@Salog("删除")
 	@Override
 	public Result<Void> delete(Long id) {
 		fundMonthAccountDao.delete(id);
-		return new Result<>();
+		return successResult();
+	}
+	
+	/**
+	 * 修改
+	 */
+	@Salog("修改")
+	@Override
+	public Result<Void> update(FundMonthlyAccountVO vo) {
+		vo.setSurplus(vo.getNextSurplus() + vo.getEarning() - vo.getExpense());
+		fundMonthAccountDao.update(vo);
+		
+		return successResult();
 	}
 }

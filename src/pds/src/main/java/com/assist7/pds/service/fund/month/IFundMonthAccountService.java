@@ -49,4 +49,11 @@ public interface IFundMonthAccountService extends IBaseService<FundMonthlyAccoun
 	 * @return
 	 */
 	public Result<Void> delete(Long id);
+	
+	/**
+	 * 修改
+	 * @param vo
+	 * @return
+	 */
+	public Result<Void> update(FundMonthlyAccountVO vo);
 }

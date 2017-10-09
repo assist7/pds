@@ -49,4 +49,11 @@ public interface IFundMonthAccountDao {
 	 * @return
 	 */
 	public int delete(@Param("id") Long id);
+	
+	/**
+	 * 修改
+	 * @param vo
+	 * @return
+	 */
+	public int update(FundMonthlyAccountVO vo);
 }

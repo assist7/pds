@@ -93,4 +93,16 @@ public class FundMonthAccountController extends BaseController<FundMonthlyAccoun
 	public ResultRequest delete(Long id) {
 		return fundMonthAccountService.delete(id).getWebResult();
 	}
+	
+	/**
+	 * 修改
+	 * @param vo
+	 * @return
+	 */
+	@Salog("修改")
+	@RequestMapping("update")
+	@ResponseBody
+	public ResultRequest update(FundMonthlyAccountVO vo) {
+		return fundMonthAccountService.update(vo).getWebResult();
+	}
 }

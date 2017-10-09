@@ -1,5 +1,7 @@
 package com.assist7.pds.config;
 
+import org.springframework.stereotype.Component;
+
 import com.assist7.july.salog.interceptor.SalogInterceptor;
 
 /**
@@ -8,6 +10,7 @@ import com.assist7.july.salog.interceptor.SalogInterceptor;
  * @author Qiaoxin.Hong
  *
  */
+@Component
 public class PdsSalogInterceptor extends SalogInterceptor {
 
 }
