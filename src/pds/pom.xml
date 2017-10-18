@@ -11,6 +11,19 @@
   	<spring.boot.version>1.4.2.RELEASE</spring.boot.version>
   </properties>
   
+  <distributionManagement>
+  	<snapshotRepository>
+  		<id>qylyx-snapshot</id>
+  		<name>qylyx-snapshot</name>
+  		<url>http://120.77.221.152:8081/nexus/content/repositories/snapshots</url>
+  	</snapshotRepository>
+  	<repository>
+  		<id>qylyx-release</id>
+  		<name>qylyx-release</name>
+  		<url>http://120.77.221.152:8081/nexus/content/repositories/releases</url>
+  	</repository>
+  </distributionManagement>
+  
   <dependencies>
   	<dependency>
 		<groupId>com.assist7.remex</groupId>
@@ -29,6 +42,11 @@
 		<artifactId>spring-boot-starter-web</artifactId>
 		<version>${spring.boot.version}</version>
 	</dependency>
+	<!-- <dependency>  
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        <version>${spring.boot.version}</version>  
+    </dependency>  -->
 	<dependency>
 	    <groupId>com.h2database</groupId>
 	    <artifactId>h2</artifactId>
@@ -55,4 +73,39 @@
         <version>4.1.1</version>  
     </dependency>
   </dependencies>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-maven-plugin</artifactId>
+		    <version>1.4.2.RELEASE</version>
+		    <executions>
+		    	<execution>
+		    		<goals>
+		    			<goal>repackage</goal>
+		    		</goals>
+		    	</execution>
+		    </executions>
+  		</plugin>
+  	</plugins>
+  	
+  	<resources>
+  		<resource>
+  			<directory>src/main/webapp</directory>
+  			<targetPath>META-INF/resources</targetPath>
+  			<includes>
+  				<include>**/**</include>
+  			</includes>
+  		</resource>
+  		
+  		<resource>
+  			<directory>src/main/resources</directory>
+  			<includes>
+  				<include>**/**</include>
+  			</includes>
+  			<filtering>false</filtering>
+  		</resource>
+  	</resources>
+  </build>
 </project>
